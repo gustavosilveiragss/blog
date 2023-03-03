@@ -1,41 +1,43 @@
 import Head from 'next/head';
 import { GetStaticProps } from 'next/types';
 import prisma from '../lib/prisma';
+import { Post } from '@prisma/client';
 
-import Home from '../components/Home';
+import Feed from '../components/Feed/Feed';
 import DrawerLayout from '../components/NavBar/DrawerLayout';
 import Footer from '../components/Footer';
 
 export const getStaticProps: GetStaticProps = async () => {
+  // TODO: add pagination
+
   const feed = await prisma.post.findMany({
     where: { published: true },
     include: {
-      author: {
-        select: { name: true },
-      },
+      category: true
     },
   });
-  
+
   return {
     props: { feed },
-    revalidate: 10,
   };
 };
 
-export default function Index(props) {
+export default function Index(props: { feed: Post[] }) {
+  // TODO: handle no posts/error
+
   return (
     <>
       <Head>
-        <title>Gustavo Silveira</title>
+        <title>Blog | Gustavo Silveira</title>
         <meta name="description" content="Gustavo Silveira's personal website" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/flavicon.ico" />
       </Head>
 
       <main>
-        <div className='bg-base-100 flex-col'>
+        <div className='bg-base-100 flex flex-col'>
           <DrawerLayout>
-            <Home />
+            <Feed {...props.feed} />
             <Footer />
           </DrawerLayout>
         </div>
