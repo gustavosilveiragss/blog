@@ -2,12 +2,15 @@ import React from "react";
 import Navbar from "./NavBar";
 import { useSessionStorage } from "usehooks-ts";
 import NavBarPages from "./NavBarPages";
+import { IoIosClose, IoIosSearch } from "react-icons/io";
 type Props = {
     children: React.ReactNode;
 };
 
 const DrawerLayout = ({ children }: Props) => {
     const [open, setOpen] = useSessionStorage("drawer", false);
+    const searchClass = open ? "relative" : "hidden";
+    const searchIconClass = open ? "absolute" : "hidden";
 
     return (
         <>
@@ -26,12 +29,17 @@ const DrawerLayout = ({ children }: Props) => {
                 </div>
 
                 <div className="drawer-side">
-                    <label
-                        className="drawer-overlay"
-                        onClick={() => setOpen(false)}
-                    ></label>
-                    <ul className="menu p-4 overflow-y-auto w-80 bg-neutral">
-                        <NavBarPages />
+                    <ul className="menu p-4 overflow-y-auto w-full l bg-neutral">
+                        <div className="flex justify-end mb-6">
+                            <button onClick={() => setOpen(false)}><IoIosClose size={36} /></button>
+                        </div>
+                        <div className={"flex justify-end items-center mb-3 " + searchClass}>
+                            <input type="text" placeholder="Search" className="input input-bordered w-full" />
+                            <IoIosSearch className={"mr-2 w-10 " + searchIconClass} />
+                        </div>
+                        <button ref="/" className="text-white rounded-lg feed-btn">
+                            FEED
+                        </button>
                     </ul>
                 </div>
             </div>

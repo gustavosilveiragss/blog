@@ -11,17 +11,15 @@ const Navbar = () => {
 
     return (
         <div className="w-full sticky top-0 navbar bg-base-100 z-50 lg:justify-around justify-between">
-            <Image alt="G" height={45} src={Logo} />
+            <a href="/"><Image alt="G" height={45} src={Logo} /></a>
 
-            <div className="flex-none hidden lg:block">
-                <ul className="menu menu-horizontal">
-                    <NavBarPages />
-                </ul>
+            <div className="flex-none hidden lg:flex gap-8 flex-row">
+                <NavBarPages />
             </div>
 
             {/* Mobile menu button only shows for lg and below devices */}
             <div className="flex-none lg:hidden">
-                <label className="btn btn-square btn-ghost" onClick={toggleDrawer}>
+                <label className="btn btn-square btn-ghost text-base" onClick={toggleDrawer}>
                     <svg
                         xmlns="http://www.w3.org/2000/svg"
                         fill="none"

@@ -1,28 +1,15 @@
-// import { Link } from "react-router-dom";
-
-// import Link from "next/link";
-
-const NavBtn = ({ id }) => {
-    return (
-        /* <button
-            onClick={() => {
-                let element = document.getElementById(id);
-                element && element.scrollIntoView({ behavior: "smooth", block: "start" });
-                window.history.replaceState(null, '', id == 'home' ? '/' : ('#' + id));
-            }}
-            className="text-white rounded-lg"
-        >
-            {id.toUpperCase()}
-        </button> */<></>
-    );
-}
+import { IoIosSearch } from "react-icons/io";
 
 const NavBarPages = () => {
     return (
         <>
-            <li>
-                <NavBtn id='home'></NavBtn>
-            </li>
+            <a href="/" className="text-white rounded-lg feed-btn">
+                FEED
+            </a>
+            <div className="flex justify-end items-center relative">
+                <input type="text" placeholder="Search" className="input input-bordered" />
+                <IoIosSearch className="absolute mr-2 w-10"/>
+            </div>
         </>
     )
 };

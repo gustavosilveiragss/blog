@@ -36,20 +36,21 @@ export default function PostPage(props: { post: PostWithAuthorCategory }) {
         <>
             <Head>
                 <title>{post.title}</title>
-                <meta name="description" content={post.content ?? ""} />
+                <meta name="description" content={post.content} />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/flavicon.ico" />
             </Head>
 
             <main>
-                <div className='bg-base-200 flex flex-col post-page w-full'>
-                    <DrawerLayout>
+                <DrawerLayout>
+                    <div className='bg-base-200 flex flex-col post-page w-full'>
                         <div className='flex justify-center min-h-screen'>
                             <div className='px-4 w-full lg:max-w-7xl'>
-                                <p className='text-4xl md:text-5xl font-bold first-letter:capitalize'>{post.title}</p>
+                                <p className='text-4xl md:text-5xl font-bold my-2 first-letter:capitalize'>{post.title}</p>
+                                {/* TODO: display date here */}
                                 <div className="h-[3px] w-full bg-white block relative rounded-full"></div>
                                 <ReactMarkdown
-                                    children={post.content ?? "No content"}
+                                    children={post.content}
                                     remarkPlugins={[remarkGfm]}
                                     rehypePlugins={[rehypeRaw]}
                                     components={{
@@ -72,9 +73,9 @@ export default function PostPage(props: { post: PostWithAuthorCategory }) {
                                 />
                             </div>
                         </div>
-                    </DrawerLayout>
-                </div>
-                <Footer />
+                        <Footer />
+                    </div>
+                </DrawerLayout>
             </main>
         </>
     );

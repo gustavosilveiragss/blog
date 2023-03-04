@@ -4,6 +4,20 @@
 
 @layer components {
 
+  /* --------------------------- NAVBAR --------------------------- */
+
+  .feed-btn {
+    transition: transform 0.1s;
+    @apply px-4 py-3
+  }
+
+  .feed-btn:hover {
+    backface-visibility: hidden;
+    -webkit-font-smoothing: subpixel-antialiased;
+    background-color: rgba(255, 255, 255, .1)
+    
+  }
+
   /* --------------------------- FEED --------------------------- */
   .post-card {
     transition: transform 0.15s;
