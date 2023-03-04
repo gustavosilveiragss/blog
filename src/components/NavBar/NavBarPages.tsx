@@ -8,7 +8,7 @@ const NavBarPages = () => {
             </a>
             <div className="flex justify-end items-center relative">
                 <input type="text" placeholder="Search" className="input input-bordered" />
-                <IoIosSearch className="absolute mr-2 w-10"/>
+                <IoIosSearch color="white" className="absolute mr-2 w-10"/>
             </div>
         </>
     )

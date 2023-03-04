@@ -46,11 +46,12 @@ export default function PostPage(props: { post: PostWithAuthorCategory }) {
                     <div className='bg-base-200 flex flex-col post-page w-full'>
                         <div className='flex justify-center min-h-screen'>
                             <div className='px-4 w-full lg:max-w-7xl'>
-                                <p className='text-4xl md:text-5xl font-bold my-2 first-letter:capitalize'>{post.title}</p>
+                                <p className='text-4xl text-white md:text-5xl font-bold my-2 first-letter:capitalize'>{post.title}</p>
                                 {/* TODO: display date here */}
                                 <div className="h-[3px] w-full bg-white block relative rounded-full"></div>
                                 <ReactMarkdown
                                     children={post.content}
+                                    className='text-white'
                                     remarkPlugins={[remarkGfm]}
                                     rehypePlugins={[rehypeRaw]}
                                     components={{

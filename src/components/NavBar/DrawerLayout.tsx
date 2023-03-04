@@ -3,12 +3,14 @@ import Navbar from "./NavBar";
 import { useSessionStorage } from "usehooks-ts";
 import NavBarPages from "./NavBarPages";
 import { IoIosClose, IoIosSearch } from "react-icons/io";
+import { useRouter } from "next/router";
 type Props = {
     children: React.ReactNode;
 };
 
 const DrawerLayout = ({ children }: Props) => {
     const [open, setOpen] = useSessionStorage("drawer", false);
+    const router = useRouter();
     const searchClass = open ? "relative" : "hidden";
     const searchIconClass = open ? "absolute" : "hidden";
 
@@ -35,9 +37,12 @@ const DrawerLayout = ({ children }: Props) => {
                         </div>
                         <div className={"flex justify-end items-center mb-3 " + searchClass}>
                             <input type="text" placeholder="Search" className="input input-bordered w-full" />
-                            <IoIosSearch className={"mr-2 w-10 " + searchIconClass} />
+                            <IoIosSearch color="white" className={"mr-2 w-10 " + searchIconClass} />
                         </div>
-                        <button ref="/" className="text-white rounded-lg feed-btn">
+                        <button onClick={() => {
+                            router.push("/");
+                            setOpen(false);
+                        }} className="text-white rounded-lg feed-btn outline outline-1">
                             FEED
                         </button>
                     </ul>
