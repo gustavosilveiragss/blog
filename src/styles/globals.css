@@ -4,19 +4,65 @@
 
 @layer components {
 
-  section {
-    @apply relative flex flex-col items-center mt-[-1px]
+  /* --------------------------- FEED --------------------------- */
+  .post-card {
+    transition: transform 0.15s;
   }
 
-  /* --------------------------- HOME --------------------------- */
-  .home .btn {
-    transition: transform 0.2s;
-  }
-
-  .home .btn:hover {
-    transform: scale(1.05) translateZ(0);
+  .post-card:hover {
+    transform: scale(1.01) translateZ(0);
     backface-visibility: hidden;
     -webkit-font-smoothing: subpixel-antialiased;
+  }
+
+  /* --------------------------- POST PAGE --------------------------- */
+  .post-page {
+    line-height: 1.5rem;
+  }
+
+  .post-page h1 {
+    @apply text-3xl md:text-4xl my-2 font-bold
+  }
+
+  .post-page h2 {
+    @apply text-2xl md:text-3xl my-2
+  }
+
+  .post-page p {
+    @apply mb-2
+  }
+
+  .post-page a {
+    @apply text-blue-400 hover:underline
+  }
+
+  .post-page li {
+    list-style-type: disc;
+    @apply ml-4
+  }
+
+  .post-page li > ul > li {
+    list-style-type: circle;
+  }
+
+  .post-page pre > span {
+    border-radius: 0.5rem !important;
+  }
+
+  blockquote {
+    border-left: 2px solid #ccc;
+    margin: 1.5em 10px;
+    padding: 0.5em 10px;
+  }
+  blockquote:before {
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+  }
+  blockquote p {
+    display: inline;
   }
 }
 

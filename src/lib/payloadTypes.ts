@@ -4,3 +4,10 @@ import { Prisma } from '@prisma/client'
 export type PostWithCategory = Prisma.PostGetPayload<{
     include: { category: true }
 }>
+
+export type PostWithAuthorCategory = Prisma.PostGetPayload<{
+    include: {
+        author: true,
+        category: true
+    },
+}>

@@ -13,8 +13,8 @@ const Feed = (feed: PostWithCategory[]) => {
                             <h3 className="text-lg text-white mr-1 whitespace-nowrap">RECENT POSTS</h3>
                             <div className="h-[1px] w-full bg-secondary block relative top-3"></div>
                         </div>
-                        <div className="pr-80 ">
-                        { feed.map(post => <PostCard {...post} />) }
+                        <div className="w-full ">
+                            {feed.map(post => <PostCard {...post} />)}
                         </div>
                     </div>
                 </div>

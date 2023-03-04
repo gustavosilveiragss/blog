@@ -1,9 +1,9 @@
 import Head from 'next/head';
 import { GetStaticProps } from 'next/types';
 import prisma from '../lib/prisma';
-import { Post } from '@prisma/client';
+import { PostWithCategory } from '../lib/payloadTypes';
 
-import Feed from '../components/Feed/Feed';
+import Feed from '../components/Feed';
 import DrawerLayout from '../components/NavBar/DrawerLayout';
 import Footer from '../components/Footer';
 
@@ -22,7 +22,7 @@ export const getStaticProps: GetStaticProps = async () => {
   };
 };
 
-export default function Index(props: { feed: Post[] }) {
+export default function Index(props: { feed: PostWithCategory[] }) {
   // TODO: handle no posts/error
 
   return (
