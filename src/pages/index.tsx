@@ -11,19 +11,24 @@ export const getStaticProps: GetStaticProps = async () => {
   // TODO: add pagination
 
   const feed = await prisma.post.findMany({
-    where: { published: true },
+    where: {
+      published: true
+    },
+    orderBy: {
+      createdAt: "desc"
+    },
     include: {
       category: true
     },
   });
 
   return {
-    props: { feed },
+    props: { feed }, 
   };
 };
 
 export default function Index(props: { feed: PostWithCategory[] }) {
-  // TODO: handle no posts/error
+  // TODO: handle loading and no posts/error
 
   return (
     <>

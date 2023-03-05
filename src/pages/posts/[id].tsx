@@ -8,6 +8,7 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import { CodeBlock, dracula } from 'react-code-blocks';
 import rehypeRaw from 'rehype-raw';
+import { formatDate } from '@/src/lib/utils';
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     const post = await prisma.post.findUnique({
@@ -47,7 +48,7 @@ export default function PostPage(props: { post: PostWithAuthorCategory }) {
                         <div className='flex justify-center min-h-screen'>
                             <div className='px-4 w-full lg:max-w-7xl'>
                                 <p className='text-4xl text-white md:text-5xl font-bold my-2 first-letter:capitalize'>{post.title}</p>
-                                {/* TODO: display date here */}
+                                <p className='text-lg text-gray-400 font-bold'>{formatDate(post.createdAt)}</p>
                                 <div className="h-[3px] w-full bg-white block relative rounded-full"></div>
                                 <ReactMarkdown
                                     children={post.content}

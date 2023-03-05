@@ -13,6 +13,7 @@
     "@types/node": "18.14.1",
     "@types/react": "18.0.28",
     "@types/react-dom": "18.0.11",
+    "babel-plugin-superjson-next": "^0.4.5",
     "daisyui": "^2.51.1",
     "eslint": "8.35.0",
     "eslint-config-next": "13.2.1",
@@ -26,6 +27,7 @@
     "react-markdown": "^8.0.5",
     "rehype-raw": "^6.1.1",
     "remark-gfm": "^3.0.1",
+    "superjson": "^1.12.2",
     "typescript": "4.9.5",
     "usehooks-ts": "2.6.0"
   },
