@@ -1,7 +1,6 @@
 import React from "react";
 import Navbar from "./NavBar";
 import { useSessionStorage } from "usehooks-ts";
-import NavBarPages from "./NavBarPages";
 import { IoIosClose, IoIosSearch } from "react-icons/io";
 import { useRouter } from "next/router";
 type Props = {
