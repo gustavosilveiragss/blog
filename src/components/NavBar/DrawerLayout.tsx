@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState } from "react";
 import Navbar from "./NavBar";
 import { useSessionStorage } from "usehooks-ts";
 import { IoIosClose, IoIosSearch } from "react-icons/io";
 import { useRouter } from "next/router";
+import SearchDropdown from "./SearchDropdown";
 type Props = {
     children: React.ReactNode;
 };
@@ -12,6 +13,8 @@ const DrawerLayout = ({ children }: Props) => {
     const router = useRouter();
     const searchClass = open ? "relative" : "hidden";
     const searchIconClass = open ? "absolute" : "hidden";
+
+    const [searchTerm, setSearchTerm] = useState('');
 
     return (
         <>
@@ -34,9 +37,12 @@ const DrawerLayout = ({ children }: Props) => {
                         <div className="flex justify-end mb-6">
                             <button onClick={() => setOpen(false)}><IoIosClose size={36} /></button>
                         </div>
-                        <div className={"flex justify-end items-center mb-3 " + searchClass}>
-                            <input type="text" placeholder="Search" className="input input-bordered w-full" />
-                            <IoIosSearch color="white" className={"mr-2 w-10 " + searchIconClass} />
+                        <div className="dropdown dropdown-end">
+                            <label className={"flex justify-end items-center mb-3 " + searchClass}>
+                                <input type="text" placeholder="Search" className="input input-bordered w-full" onChange={(e) => setSearchTerm(e.target.value)} />
+                                <IoIosSearch color="white" className={"mr-2 w-10 " + searchIconClass} />
+                            </label>
+                            <SearchDropdown searchTerm={searchTerm} sm={true} />
                         </div>
                         <button onClick={() => {
                             router.push("/");
