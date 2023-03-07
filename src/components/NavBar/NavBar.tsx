@@ -4,25 +4,37 @@ import Image from "next/image";
 import { IoIosSearch } from "react-icons/io";
 
 import Logo from '../../../public/icons/logo-temp.svg';
-import prisma from "@/src/lib/prisma";
 
 const Navbar = () => {
     const [, setOpen] = useSessionStorage("drawer", false);
     const toggleDrawer = () => setOpen((prev) => !prev);
-
+    
+    const [searchDropdownOn, setSearchDropdownOn] = useState(false);
+    const [loadingSearch, setLoadingSearch] = useState(true);
     const [searchTerm, setSearchTerm] = useState('');
+
     useEffect(() => {
         if (searchTerm === "") {
             return;
+
         }
+        // TODO: when click enter/search icon
 
         const delayDebounceFn = setTimeout(async () => {
-            const result = await fetch(`${process.env.NEXT_PUBLIC_API_URL}search?q=${searchTerm}`);
+            setSearchDropdownOn(true);
+           setLoadingSearch(true);
 
-            if (!result.ok) {
-                // TODO: deal with search error
-                return;
-            }
+
+            fetch(`${process.env.NEXT_PUBLIC_API_URL}search?q=${searchTerm}`).then(result => {
+                if (!result.ok) {
+                    // TODO: deal with search error (show on dropdown)
+                    return;
+                }
+
+                setLoadingSearch(false);
+
+                // TODO: display list or "no results"
+            });
         }, 1000)
 
         return () => clearTimeout(delayDebounceFn)

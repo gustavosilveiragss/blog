@@ -8,10 +8,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     }
 
     try {
-        const searchTerm = Array.isArray(req.query.q) ? req.query.q[0] : (req.query.q ?? "");
-
-        const query = `%${'searchTerm'}%`;
-        console.log(query)
+        const searchTerm = Array.isArray(req.query.q) ? req.query.q[0] : (req.query.q ?? ""); // eliminate array and undefined possibilities
 
         // https://github.com/prisma/prisma/discussions/3159
         const result = await prisma.$queryRaw`SELECT * FROM "Post" WHERE LOWER("title") LIKE LOWER(${`${searchTerm}%`}) OR "title" LIKE LOWER(${`% ${searchTerm}%`}) LIMIT 5;`;
