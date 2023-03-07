@@ -44,10 +44,11 @@ const DrawerLayout = ({ children }: Props) => {
                             </label>
                             <SearchDropdown searchTerm={searchTerm} sm={true} />
                         </div>
-                        <button onClick={() => {
-                            router.push("/");
-                            setOpen(false);
-                        }} className="text-white rounded-lg feed-btn outline outline-1">
+                        <button className="text-white rounded-lg feed-btn outline outline-1"
+                            onClick={() => {
+                                router.push("/");
+                                setOpen(false);
+                            }}>
                             FEED
                         </button>
                     </ul>

@@ -8,8 +8,6 @@ import DrawerLayout from '../components/NavBar/DrawerLayout';
 import Footer from '../components/Footer';
 
 export const getStaticProps: GetStaticProps = async () => {
-  // TODO: add pagination
-
   const feed = await prisma.post.findMany({
     where: {
       published: true
@@ -28,7 +26,8 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 export default function Index(props: { feed: PostWithCategory[] }) {
-  // TODO: handle loading and no posts/error
+  // TODO: no posts/error 
+  // TODO: handle loading
 
   return (
     <>

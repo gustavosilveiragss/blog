@@ -36,7 +36,7 @@ export default function PostPage(props: { post: PostWithAuthorCategory }) {
     return (
         <>
             <Head>
-                <title>{post.title}</title>
+                <title>{post.title} | Gustavo Silveira</title>
                 <meta name="description" content={post.content} />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/flavicon.ico" />
