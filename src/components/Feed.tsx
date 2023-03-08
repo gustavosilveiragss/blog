@@ -1,7 +1,6 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import PostCard from "./PostCard";
 import { PostWithCategory } from "@/src/lib/payloadTypes";
-import { Category } from "@prisma/client";
 
 const Feed = (feed: PostWithCategory[]) => {
     feed = Object.values(feed); // Turn into array
@@ -28,8 +27,20 @@ const Feed = (feed: PostWithCategory[]) => {
         }
 
         setCategoryFilter([...categoryFilter, category]);
-        // TODO: call api with category filter
     }
+
+    useEffect(() => {
+        fetch(`${process.env.NEXT_PUBLIC_API_URL + (categoryFilter.length === 0 ? "search" : "filter")}?q=${categoryFilter.join(',')}`).then(async result => {
+            if (!result.ok) {
+                console.log(result);
+
+                return;
+            }
+
+            // TODO: loading
+            // TODO: display new posts
+        });
+    }, [categoryFilter]);
 
     return (
         <section id="feed">
@@ -49,7 +60,7 @@ const Feed = (feed: PostWithCategory[]) => {
                     <div>
                         <div className="flex flex-row w-full">
                             <h3 className={`text-lg text-white mr-1 ${categoryFilter.length === 0 ? "whitespace-nowrap" : ""}`}>{
-                                categoryFilter.length === 0 
+                                categoryFilter.length === 0
                                     ? "RECENT POSTS"
                                     : `POSTS TAGGED WITH ${categoryFilter.map((category, index) => {
                                         var filter = category.toUpperCase();

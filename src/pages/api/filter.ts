@@ -9,12 +9,21 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     }
 
     try {
-        const searchTerm = queryToStringOnly(req.query.q);
-
-        // https://github.com/prisma/prisma/discussions/3159
-        const result = await prisma.$queryRaw`SELECT * FROM "Post" WHERE LOWER("title") LIKE LOWER(${`${searchTerm}%`}) OR LOWER("title") LIKE LOWER(${`% ${searchTerm}%`}) ORDER BY "createdAt" DESC LIMIT 5;`;
+        const categories = queryToStringOnly(req.query.q).split(',');
+        
+        const result = await prisma.post.findMany({
+            where: {
+                category: {
+                    name: {
+                        in: categories,
+                        mode: "insensitive"
+                    },
+                }
+            }
+        });
 
         res.status(200).json(result);
+        // TODO: Each child in a list should have a unique "key" prop.
     } catch (e) {
         if (e instanceof ApiError) {
             res.status(e.statusCode).send(e.message);
