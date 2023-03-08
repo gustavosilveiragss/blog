@@ -11,7 +11,7 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
     try {
         const categories = queryToStringOnly(req.query.q).split(',');
 
-        // WORKAROUND: prisma doesnt allow to dynamically generate the 'where' filter. I hate this but it's easier than using a raw query
+        // WORKAROUND: prisma doesnt allow dynamically generating the 'where' filter. I hate this but it's easier than using a raw query
         const result = categories[0] === ''
             ? await prisma.post.findMany({
                 where: {

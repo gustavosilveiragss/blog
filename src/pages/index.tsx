@@ -28,9 +28,6 @@ export const getStaticProps: GetStaticProps = async () => {
 };
 
 export default function Index(props: { feed: PostWithCategory[] }) {
-  // TODO: no posts/error 
-  // TODO: handle loading
-
   const router = useRouter();
 
   return (

@@ -17,6 +17,9 @@ const Feed = ({ initialFeed, initialFilter = "" }: Props) => {
     const categoriesNames: string[] = []
 
     const [categoryFilter, setCategoryFilter] = useState<string[]>([initialFilter]);
+    if (categoryFilter[0] === "") {
+        categoryFilter.pop();
+    }
 
     // get category list from published posts to avoid api call
     for (let i = 0; i < initialFeed.length; i++) {
@@ -29,10 +32,6 @@ const Feed = ({ initialFeed, initialFilter = "" }: Props) => {
 
     function handleCategoryClick(category: string) {
         setLoading(true);
-
-        if (categoryFilter[0] === "") {
-            categoryFilter.pop();
-        }
 
         if (categoryFilter.includes(category)) {
             categoryFilter.splice(categoryFilter.indexOf(category), 1);
