@@ -39,7 +39,7 @@ const DrawerLayout = ({ children }: Props) => {
                         </div>
                         <div className="dropdown dropdown-end">
                             <label className={"flex justify-end items-center mb-3 " + searchClass}>
-                                <input type="text" placeholder="Search" className="input input-bordered w-full" onChange={(e) => setSearchTerm(e.target.value)} />
+                                <input type="text" placeholder="Search" className="input input-bordered w-full text-white" onChange={(e) => setSearchTerm(e.target.value)} />
                                 <IoIosSearch color="white" className={"mr-2 w-10 " + searchIconClass} />
                             </label>
                             <SearchDropdown searchTerm={searchTerm} sm={true} />

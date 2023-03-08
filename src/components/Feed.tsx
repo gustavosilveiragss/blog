@@ -66,8 +66,8 @@ const Feed = ({ initialFeed, initialFilter = "" }: Props) => {
                     <div className="flex flex-wrap w-full -mt-3 items-start gap-2">
                         {categoriesNames.map(category =>
                             <div key={category}
-                                className={`badge badge-outline mt-[2px] text-xs font-bold cursor-pointer 
-                                    ${categoryFilter.includes(category) ? "bg-white text-base-300 border-white" : ""}`}
+                                className={`badge badge-outline mt-[2px] text-xs font-bold cursor-pointer
+                                    ${categoryFilter.includes(category) ? "bg-white text-base-300 border-white" : "text-white"}`}
                                 onClick={() => handleCategoryClick(category)}>
                                 {category.toUpperCase()}
                             </div>

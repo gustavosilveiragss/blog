@@ -53,7 +53,7 @@ export default function PostPage(props: { post: PostWithAuthorCategory }) {
                                 <p className='text-4xl text-white md:text-5xl font-bold my-2 first-letter:capitalize'>{post.title}</p>
                                 <div className='flex flex-row gap-2'>
                                     <button
-                                        className="badge badge-outline mt-[4px] text-xs font-bold"
+                                        className="badge badge-outline mt-[4px] text-xs font-bold text-white"
                                         onClick={() => {
                                             router.push({
                                                 pathname: '/',

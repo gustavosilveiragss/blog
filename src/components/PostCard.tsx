@@ -11,7 +11,7 @@ const PostCard = (post: PostWithCategory) => {
                 <p className="h-min">{post.subtitle}</p>
                 <div className="card-actions justify-end">
                     <span>{formatDate(post.createdAt)}</span>
-                    <div key={post.categoryId} className="badge badge-outline mt-[2px] text-xs font-bold">{post.category.name.toUpperCase()}</div>
+                    <div key={post.categoryId} className="badge badge-outline mt-[2px] text-xs font-bold text-white">{post.category.name.toUpperCase()}</div>
                 </div>
             </div>
         </a>

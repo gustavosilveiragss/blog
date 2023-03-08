@@ -22,7 +22,7 @@ const Navbar = () => {
                 </a>
                 <div className="dropdown dropdown-end">
                     <label className="flex justify-end items-center relative">
-                        <input type="text" placeholder="Search" className="input input-bordered" onChange={(e) => setSearchTerm(e.target.value)} />
+                        <input type="text" placeholder="Search" className="input input-bordered text-white" onChange={(e) => setSearchTerm(e.target.value)} />
                         <IoIosSearch color="white" className="absolute mr-2 w-10" />
                     </label>
                     <SearchDropdown searchTerm={searchTerm} />
