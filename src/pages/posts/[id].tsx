@@ -9,6 +9,7 @@ import remarkGfm from 'remark-gfm';
 import { CodeBlock, dracula } from 'react-code-blocks';
 import rehypeRaw from 'rehype-raw';
 import { formatDate } from '@/src/lib/utils';
+import { useRouter } from 'next/router';
 
 export const getServerSideProps: GetServerSideProps = async ({ params }) => {
     const post = await prisma.post.findUnique({
@@ -33,10 +34,12 @@ export const getServerSideProps: GetServerSideProps = async ({ params }) => {
 export default function PostPage(props: { post: PostWithAuthorCategory }) {
     const post = props.post;
 
+    const router = useRouter();
+
     return (
         <>
             <Head>
-                <title>{post.title} | Gustavo Silveira</title>
+                    <title>{`${post.title} | Gustavo Silveira`}</title>
                 <meta name="description" content={post.content} />
                 <meta name="viewport" content="width=device-width, initial-scale=1" />
                 <link rel="icon" href="/flavicon.ico" />
@@ -48,7 +51,18 @@ export default function PostPage(props: { post: PostWithAuthorCategory }) {
                         <div className='flex justify-center min-h-screen'>
                             <div className='px-4 w-full lg:max-w-7xl'>
                                 <p className='text-4xl text-white md:text-5xl font-bold my-2 first-letter:capitalize'>{post.title}</p>
-                                <p className='text-lg text-gray-400 font-bold'>{formatDate(post.createdAt)}</p>
+                                <div className='flex flex-row gap-2'>
+                                    <button
+                                        className="badge badge-outline mt-[4px] text-xs font-bold"
+                                        onClick={() => {
+                                            router.push({
+                                                pathname: '/',
+                                                query: { filter: post.category.name },
+                                            })
+                                        }}>{post.category.name.toUpperCase()}
+                                    </button>
+                                    <p className='text-lg text-gray-400 font-bold'>{formatDate(post.createdAt)}</p>
+                                </div>
                                 <div className="h-[3px] w-full bg-white block relative rounded-full"></div>
                                 <ReactMarkdown
                                     children={post.content}

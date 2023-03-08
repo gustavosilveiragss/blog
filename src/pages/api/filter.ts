@@ -10,20 +10,39 @@ export default async function handle(req: NextApiRequest, res: NextApiResponse) 
 
     try {
         const categories = queryToStringOnly(req.query.q).split(',');
-        
-        const result = await prisma.post.findMany({
-            where: {
-                category: {
-                    name: {
-                        in: categories,
-                        mode: "insensitive"
+
+        // WORKAROUND: prisma doesnt allow to dynamically generate the 'where' filter. I hate this but it's easier than using a raw query
+        const result = categories[0] === ''
+            ? await prisma.post.findMany({
+                where: {
+                    published: true
+                },
+                orderBy: {
+                    createdAt: "desc"
+                },
+                include: {
+                    category: true
+                },
+            })
+            : await prisma.post.findMany({
+                where: {
+                    category: {
+                        name: {
+                            in: categories,
+                            mode: "insensitive"
+                        },
                     },
-                }
-            }
-        });
+                    published: true
+                },
+                orderBy: {
+                    createdAt: "desc"
+                },
+                include: {
+                    category: true
+                },
+            });
 
         res.status(200).json(result);
-        // TODO: Each child in a list should have a unique "key" prop.
     } catch (e) {
         if (e instanceof ApiError) {
             res.status(e.statusCode).send(e.message);

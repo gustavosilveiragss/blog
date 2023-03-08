@@ -1,5 +1,6 @@
-export function formatDate(date: Date) {
+export function formatDate(date: Date | string) {
     // format date to dd/mm/yyyy
+    date = new Date(date);
     return `${date.getDate()}/${date.getMonth()}/${date.getFullYear()}`
 }
 

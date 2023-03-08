@@ -6,6 +6,8 @@ import { PostWithCategory } from '../lib/payloadTypes';
 import Feed from '../components/Feed';
 import DrawerLayout from '../components/NavBar/DrawerLayout';
 import Footer from '../components/Footer';
+import { useRouter } from 'next/router';
+import { queryToStringOnly } from '../lib/utils';
 
 export const getStaticProps: GetStaticProps = async () => {
   const feed = await prisma.post.findMany({
@@ -29,6 +31,8 @@ export default function Index(props: { feed: PostWithCategory[] }) {
   // TODO: no posts/error 
   // TODO: handle loading
 
+  const router = useRouter();
+
   return (
     <>
       <Head>
@@ -41,7 +45,7 @@ export default function Index(props: { feed: PostWithCategory[] }) {
       <main>
         <div className='bg-base-100 flex flex-col'>
           <DrawerLayout>
-            <Feed {...props.feed} />
+            <Feed initialFeed={props.feed} initialFilter={queryToStringOnly(router.query.filter)} />
             <Footer />
           </DrawerLayout>
         </div>
