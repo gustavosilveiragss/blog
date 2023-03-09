@@ -39,7 +39,11 @@
   }
 
   .post-page h2 {
-    @apply text-2xl md:text-3xl my-2
+    @apply text-2xl md:text-3xl my-2 font-semibold
+  }
+
+  .post-page h3 {
+    @apply text-xl md:text-2xl my-3 font-semibold
   }
 
   .post-page p {
@@ -48,6 +52,18 @@
 
   .post-page a {
     @apply text-blue-400 hover:underline
+  }
+
+  .post-page pre {
+    @apply mb-2
+  }
+
+  .post-page p > code {
+    @apply bg-[#282a36] rounded-lg p-[3px]
+  }
+
+  .post-page ul {
+    @apply ml-2 my-3
   }
 
   .post-page li {
@@ -63,19 +79,21 @@
     border-radius: 0.5rem !important;
   }
 
-  blockquote {
+  .post-page blockquote {
     border-left: 2px solid #ccc;
     margin: 1.5em 10px;
     padding: 0.5em 10px;
   }
-  blockquote:before {
+
+  .post-page blockquote:before {
     content: open-quote;
     font-size: 4em;
     line-height: 0.1em;
     margin-right: 0.25em;
     vertical-align: -0.4em;
   }
-  blockquote p {
+
+  .post-page blockquote p {
     display: inline;
   }
 }
