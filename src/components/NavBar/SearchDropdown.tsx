@@ -21,11 +21,10 @@ const SearchDropdown = ({ searchTerm, sm = false }) => {
             setSearchDropdownOn(true);
             setLoadingSearch(true);
 
-            fetch(`${process.env.NEXT_PUBLIC_API_URL}search?q=${searchTerm}`).then(async result => {
+            fetch(`${process.env.NEXT_PUBLIC_API_KEY}search/${searchTerm}`).then(async result => {
                 if (!result.ok) {
                     setLoadingSearch(false);
                     setSearchSuccessful(false);
-                    console.log(result);
 
                     return;
                 }

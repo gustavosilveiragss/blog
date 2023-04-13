@@ -1,32 +1,31 @@
 import Head from "next/head";
-import { GetStaticProps } from "next/types";
-import prisma from "../lib/prisma";
-import { PostWithCategory } from "../lib/payloadTypes";
 
 import Feed from "../components/Feed";
 import DrawerLayout from "../components/NavBar/DrawerLayout";
 import Footer from "../components/Footer";
 import { useRouter } from "next/router";
 import { queryToStringOnly } from "../lib/utils";
+import { GetStaticProps } from "next";
+import { Category } from "../lib/models";
 
 export const getStaticProps: GetStaticProps = async () => {
-  const feed = await fetch(`${process.env.RUST_API}/posts`).then(async (result) => {
+  const categories = await fetch(
+    `${process.env.NEXT_PUBLIC_API_KEY}categories`
+  ).then(async (result) => {
     if (!result.ok) {
       return;
     }
 
-    let posts = (await result.json()) as PostWithCategory[];
-    return posts;
+    let categories = (await result.json()) as Category[];
+    return categories;
   });
 
-  console.log(feed)
-
   return {
-    props: { feed },
+    props: { categories },
   };
 };
 
-export default function Index(props: { feed: PostWithCategory[] }) {
+export default function Index(props: { categories: Category[] }) {
   const router = useRouter();
 
   return (
@@ -45,7 +44,7 @@ export default function Index(props: { feed: PostWithCategory[] }) {
         <div className="bg-base-100 flex flex-col">
           <DrawerLayout>
             <Feed
-              initialFeed={props.feed}
+              categories={props.categories}
               initialFilter={queryToStringOnly(router.query.filter)}
             />
             <Footer />
