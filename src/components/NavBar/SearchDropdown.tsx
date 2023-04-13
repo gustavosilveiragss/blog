@@ -1,4 +1,4 @@
-import { Post } from "@prisma/client";
+import { Post } from "@/src/lib/models";
 import { useEffect, useState } from "react";
 import Loading from "../Loading";
 import SearchResult from "./SearchResult";
