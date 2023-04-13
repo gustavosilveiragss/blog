@@ -14,7 +14,8 @@ const Feed = ({ initialFilter, categories }: Props) => {
   const [loading, setLoading] = useState(false);
   const [categoryFilter, setCategoryFilter] = useState<string[]>(
     initialFilter ? [initialFilter] : []
-  );
+  ); 
+  categories = categories ?? [ { id: 1 } as Category ];
 
   function handleCategoryClick(category: string) {
     setLoading(true);
