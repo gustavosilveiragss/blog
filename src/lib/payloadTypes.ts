@@ -1,9 +1,10 @@
 //https://github.com/prisma/prisma/discussions/10928#discussioncomment-1920961
-import { Prisma } from '@prisma/client'
+import { Category, Prisma } from '@prisma/client'
+import { Post } from './models'
 
-export type PostWithCategory = Prisma.PostGetPayload<{
-    include: { category: true }
-}>
+export interface PostWithCategory extends Post {
+    category: Category
+}
 
 export type PostWithAuthorCategory = Prisma.PostGetPayload<{
     include: {
